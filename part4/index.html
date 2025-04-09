@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Places</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="images/icon.png">
+</head>
+<body>
+    <header>
+        <nav>
+            <img src="images/logo.png" alt="Logo" class="logo">
+            <a href="login.html" class="login-button">Login</a>
+        </nav>
+    </header>
+    <main>
+        <section id="filter">
+            <h2>Available Places</h2>
+            <label for="price-filter"><strong>Max Price:</strong></label>
+            <select id="price-filter">
+                <option value="all">All</option>
+                <!-- Options will be populated dynamically -->
+            </select>
+        </section>
+        <section id="places-list">
+            <!-- Example of a place card -->
+            <div class="place-card">
+                <h2>Beautiful Beach House</h2>
+                <p>Price per night: $150</p>
+                <a href="place.html" class="details-button">View Details</a>
+            </div>
+             <div class="place-card">
+                <h2>Cozy Cabin</h2>
+                <p>Price per night: $100</p>
+                <a href="place.html" class="details-button">View Details</a>
+            </div>
+             <div class="place-card">
+                <h2>Modern Apartment</h2>
+                <p>Price per night: $200</p>
+                <a href="place.html" class="details-button">View Details</a>
+            </div>
+            <!-- Additional cards will be populated dynamically -->
+        </section>
+    </main>
+    <footer>
+        <p>2025 HbnB Evolution. All rights reserved.</p>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0; /* Light Grey Background */
+    color: #000000;
+}
+
+header {
+    background-color: #FFA500; /* Orange */
+    color: white;
+    padding: 20px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+main {
+    padding: 20px;
+}
+
+footer {
+    background-color: #FFA500; /* Orange */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: auto; /* Pousse le pied de page en bas */
+
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+
+/* Logo */
+.logo {
+    height: 50px; /* Adjust as needed */
+    margin-right: 1670px; /* Space between logo and text */
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.login-button {
+    margin-right: auto; /* Push login button to the right */
+}
+
+/* Index Page Styles */
+#filter {
+    margin-bottom: 20px;
+    text-align: center;
+}
+#filter h2{
+    margin-bottom: 20px;
+}
+
+#places-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center; /* Center place cards horizontally */
+    text-align: center;
+}
+#places-list p {
+    margin-bottom: 40px;
+}
+.place-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px; /* Adjust as needed */
+    text-align: center;
+    margin: 20px; /* Add margin around the card */
+}
+
+.details-button {
+    background-color: #FFA500; /* Orange */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none; /* Remove underline from link */
+}
+/* Place Details Styles */
+.place-details {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.place-info p {
+    margin: 10px 0;
+}
+
+.place-info {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    text-align: center;
+}
+
+
+
+/* Reviews Styles */
+#reviews {
+    margin-top: 20px;
+}
+
+.review-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* Add Review Styles */
+.add-review {
+    margin-top: 20px;
+}
+
+.add-review textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.add-review button {
+    background-color: #FFA500; /* Orange */
+    color: white;
+    border: none;
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 15px;
+    margin: 10px 0;
+}

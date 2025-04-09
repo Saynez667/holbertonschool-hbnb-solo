@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Details</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="images/icon.png">
+</head>
+<body>
+    <header>
+        <nav>
+            <img src="images/logo.png" alt="Logo" class="logo">
+            <a href="index.html">Home</a>
+            <a href="login.html" class="login-button">Login</a>
+        </nav>
+    </header>
+    <main>
+        <!-- Section for place details -->
+        <h1><center>Beautiful Beach House</center></h1>
+        <section id="place-details" class="place-details">
+            <div class="place-info">
+                <p><strong>Host:</strong> John Doe</p>
+                <p><strong>Price per night:</strong> $150</p>
+                <p><strong>Description:</strong> A beautiful beach house with amazing views...</p>
+                <p><strong>Amenities:</strong> WiFi, Pool, Air Conditioning</p>
+            </div>
+        </section>
+
+        <!-- Section for reviews -->
+        <section id="reviews">
+            <h3>Reviews</h3>
+
+            <!-- Example of a review card -->
+            <div class="review-card">
+                <p><strong>Jane Smith:</strong></p>
+                <p>Great place to stay!</p>
+                <p><strong>Rating:</strong> ★★★★☆</p>
+            </div>
+
+            <!-- Additional review cards can be added dynamically -->
+            <!-- Example -->
+            <div class="review-card">
+                <p><strong>Robert Brown:</strong></p>
+                <p>Amazing location and very comfortable.</p>
+                <p><strong>Rating:</strong> ★★★★★</p>
+            </div>
+
+        </section>
+
+        <!-- Section for adding a review -->
+        <section id="add-review" class="add-review">
+            <h3>Add a Review</h3>
+
+            <!-- Example form -->
+            <form id="review-form" class="form">
+                <label for="review-text">Your Review:</label><br/>
+                <textarea id="review-text" name="review-text" required></textarea><br/>
+                
+                <label for="rating">Ratings:</label><br/>
+                <select id="rating" name="rating" required>
+                    <option value="1">1 Star</option>
+                    <option value="2">2 Stars</option>
+                    <option value="3">3 Stars</option>
+                    <option value="4">4 Stars</option>
+                    <option value="5">5 Stars</option>
+                </select><br/>
+                
+                <button type="submit">Submit Review</button><br/>
+            </form>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>2025 HbnB Evolution. All rights reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="scripts.js"></script>
+
+</body>
+</html>
