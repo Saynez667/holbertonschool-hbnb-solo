@@ -13,7 +13,7 @@ class DevelopmentConfig(Config):
     DEBUG = True
     SECRET_KEY = "dev-secret-key"
     JWT_SECRET_KEY = "dev-super-secret-key"
-    SQLALCHEMY_DATABASE_URI = "mysql://root@localhost/hbnb_dev_db"
+    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root:your_password@localhost/hbnb_dev_db"
 
 class TestingConfig(Config):
     """Testing configuration with SQLite in-memory DB."""
@@ -26,4 +26,4 @@ class ProductionConfig(Config):
     """Production configuration (set strong secrets and proper DB URI)."""
     SECRET_KEY = "prod-secret-key"
     JWT_SECRET_KEY = "prod-super-secret-key"
-    SQLALCHEMY_DATABASE_URI = "mysql://user:password@localhost/hbnb_prod_db"
+    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root:your_password@localhost/hbnb_prod_db"

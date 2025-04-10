@@ -5,16 +5,15 @@ body {
     padding: 0;
     background-color: #f0f0f0; /* Light Grey Background */
     color: #000000;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure footer stays at the bottom */
 }
 
 header {
     background-color: #FFA500; /* Orange */
     color: white;
     padding: 20px;
-    text-align: left;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;;
 }
 
 main {
@@ -27,10 +26,11 @@ footer {
     text-align: center;
     padding: 10px;
     margin-top: auto; /* Pousse le pied de page en bas */
-
+    flex-shrink: 0;
     bottom: 0;
     left: 0;
     width: auto;
+
 }
 
 
@@ -44,6 +44,7 @@ footer {
 nav {
     display: flex;
     align-items: center;
+    justify-content: space-between; /* Space between logo and links */
 }
 
 nav a {
@@ -52,9 +53,12 @@ nav a {
     margin: 0 10px;
 }
 
-.login-button {
-    margin-right: auto; /* Push login button to the right */
+nav div {
+    display: flex;
+    gap: 10px; /* Space between Home and Login links */
+    justify-content: flex-end; /* Align links to the right */
 }
+
 
 /* Index Page Styles */
 #filter {
@@ -73,7 +77,7 @@ nav a {
     text-align: center;
 }
 #places-list p {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 .place-card {
     background-color: white;
@@ -83,6 +87,7 @@ nav a {
     width: 300px; /* Adjust as needed */
     text-align: center;
     margin: 20px; /* Add margin around the card */
+    min-width: 200px; /* Minimum width for smaller screens */
 }
 
 .details-button {
@@ -142,7 +147,6 @@ nav a {
     margin-bottom: 10px;
     border-radius: 5px;
     border: 1px solid #ddd;
-    text-align: center;
 }
 
 .add-review button {
@@ -155,3 +159,17 @@ nav a {
     padding: 15px;
     margin: 10px 0;
 }
+
+html {
+    height: 100%;
+    position: relative;
+}
+
+/* Full Width Styles */
+.full-width {
+    width: 100%;
+    padding: 10px; /* Add padding for better appearance */
+    margin-top: 10px; /* Add spacing above */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+}
+
