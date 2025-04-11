@@ -3,49 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List of Places</title>
+    <title>HBNB - Home</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="images/icon.png">
+    <link rel="icon" href="icon.png">
 </head>
 <body>
+    <!-- Header -->
     <header>
+        <div class="logo-container">
+            <img src="logo.png" alt="HBNB Logo" class="logo">
+        </div>
         <nav>
-            <img src="images/logo.png" alt="Logo" class="logo">
-            <a href="login.html" class="login-button">Login</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html" class="login-button" id="login-link">Login</a></li>
+            </ul>
         </nav>
     </header>
+
     <main>
-        <section id="filter">
-            <h2>Available Places</h2>
+        <h1>Available Places</h1>
+
+        <!-- Price Filter -->
+        <section id="filter" style="text-align: center; margin-bottom: 2rem;">
             <label for="price-filter"><strong>Max Price:</strong></label>
-            <select id="price-filter">
-                <option value="all">All</option>
-                <!-- Options will be populated dynamically -->
+            <select id="price-filter" style="padding: 5px 10px; margin: 0 10px;">
+                <option value="all" selected>All</option>
+                <option value="200">$200</option>
+                <option value="150">$150</option>
+                <option value="100">$100</option>
             </select>
         </section>
-        <section id="places-list">
-            <!-- Example of a place card -->
-            <div class="place-card">
-                <h2>Beautiful Beach House</h2>
-                <p>Price per night: $150</p>
-                <a href="place.html" class="details-button">View Details</a>
-            </div>
-             <div class="place-card">
-                <h2>Cozy Cabin</h2>
-                <p>Price per night: $100</p>
-                <a href="place.html" class="details-button">View Details</a>
-            </div>
-             <div class="place-card">
-                <h2>Modern Apartment</h2>
-                <p>Price per night: $200</p>
-                <a href="place.html" class="details-button">View Details</a>
-            </div>
-            <!-- Additional cards will be populated dynamically -->
+
+        <!-- Places -->
+        <section class="places-container" id="places-list">
+            <!-- Place 1 -->
+            <article class="place-card">
+                <img src="place1.jpg" alt="Beautiful Beach House">
+                <div class="place-info">
+                    <h2>Beautiful Beach House</h2>
+                    <p class="price">Price per night: $150</p>
+                    <a href="place.html" class="details-button">View Details</a>
+                </div>
+            </article>
+
+            <!-- Place 2 -->
+            <article class="place-card">
+                <img src="place2.jpg" alt="Cozy Cabin">
+                <div class="place-info">
+                    <h2>Cozy Cabin</h2>
+                    <p class="price">Price per night: $100</p>
+                    <a href="place.html" class="details-button">View Details</a>
+                </div>
+            </article>
+
+            <!-- Place 3 -->
+            <article class="place-card">
+                <img src="place3.jpg" alt="Modern Apartment">
+                <div class="place-info">
+                    <h2>Modern Apartment</h2>
+                    <p class="price">Price per night: $200</p>
+                    <a href="place.html" class="details-button">View Details</a>
+                </div>
+            </article>
         </section>
     </main>
+
+    <!-- Footer -->
     <footer>
-        <p>2025 HbnB Evolution. All rights reserved.</p>
+        <p>&copy; 2025 HBnB- All rights reserved</p>
     </footer>
+
     <script src="scripts.js"></script>
 </body>
 </html>

@@ -1,29 +1,26 @@
-class Config:
-    """Base configuration class."""
-    DEBUG = False
-    TESTING = False
-    SECRET_KEY = "your-default-secret-key"
-    JWT_SECRET_KEY = "your-super-secret-key"
+import os
 
-    # Common SQLAlchemy config
+class Config:
+    SECRET_KEY = os.getenv('SECRET_KEY', 'default_secret_key')
+    JWT_SECRET_KEY = SECRET_KEY
+    DEBUG = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class DevelopmentConfig(Config):
-    """Development configuration with debugging and DB setup."""
     DEBUG = True
-    SECRET_KEY = "dev-secret-key"
-    JWT_SECRET_KEY = "dev-super-secret-key"
-    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root:your_password@localhost/hbnb_dev_db"
-
-class TestingConfig(Config):
-    """Testing configuration with SQLite in-memory DB."""
-    TESTING = True
-    SECRET_KEY = "test-secret-key"
-    JWT_SECRET_KEY = "test-super-secret-key"
-    SQLALCHEMY_DATABASE_URI = "sqlite:///test.db"
+    SQLALCHEMY_DATABASE_URI = os.getenv('DEV_DATABASE_URI', 'sqlite:///development.db')
 
 class ProductionConfig(Config):
-    """Production configuration (set strong secrets and proper DB URI)."""
-    SECRET_KEY = "prod-secret-key"
-    JWT_SECRET_KEY = "prod-super-secret-key"
-    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root:your_password@localhost/hbnb_prod_db"
+    DEBUG = False
+    SQLALCHEMY_DATABASE_URI = os.getenv('PROD_DATABASE_URI', 'sqlite:///production.db')
+
+class TestingConfig(Config):
+    TESTING = True
+    SQLALCHEMY_DATABASE_URI = os.getenv('TEST_DATABASE_URI', 'sqlite:///testing.db')
+
+config = {
+    'development': DevelopmentConfig,
+    'production': ProductionConfig,
+    'testing': TestingConfig,
+    'default': DevelopmentConfig
+}

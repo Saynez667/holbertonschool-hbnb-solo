@@ -1,102 +1,67 @@
 from app import db
 from .base_model import BaseModel
-from sqlalchemy import ForeignKey, Table
+from sqlalchemy import Column, Integer, String, Float, ForeignKey, Table
 from sqlalchemy.orm import relationship
 
-# Association table for the many-to-many relationship between Place and Amenity
-place_amenity = Table('place_amenity', db.Model.metadata,
-    db.Column('place_id', db.String(36), ForeignKey('places.id'), primary_key=True),
-    db.Column('amenity_id', db.String(36), ForeignKey('amenities.id'), primary_key=True)
+# Table d'association pour la relation many-to-many entre Place et Amenity
+place_amenity_association = Table(
+    'place_amenity_association',
+    db.metadata,
+    Column('place_id', Integer, ForeignKey('places.id'), primary_key=True),
+    Column('amenity_id', Integer, ForeignKey('amenities.id'), primary_key=True)
 )
 
-class Place(BaseModel):
-    """Class representing a rental place"""
-
+class Place(BaseModel, db.Model):
     __tablename__ = 'places'
 
-    title = db.Column(db.String(100), nullable=False)
-    description = db.Column(db.Text, nullable=True)
-    price = db.Column(db.Float, nullable=False, default=0.0)
-    latitude = db.Column(db.Float, nullable=False, default=0.0)
-    longitude = db.Column(db.Float, nullable=False, default=0.0)
+    id = Column(Integer, primary_key=True)
+    title = Column(String(100), nullable=False)
+    description = Column(String, nullable=True)
+    price = Column(Float, default=0.0)
+    latitude = Column(Float, nullable=False)
+    longitude = Column(Float, nullable=False)
 
-    # Relationships
-    user_id = db.Column(db.String(36), ForeignKey('users.id'), nullable=False)
-    reviews = relationship('Review', backref='place', lazy=True)
-    amenities = relationship('Amenity', secondary=place_amenity, backref='places', lazy='subquery')
+    owner_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+    owner = relationship('User', back_populates='places', lazy=True)
 
-    def __init__(self, title, description="", price=0.0, latitude=0.0, longitude=0.0, **kwargs):
-        """Initialize a new Place"""
-        super().__init__(**kwargs)
+    reviews = relationship('Review', back_populates='place', lazy=True)
+    amenities = relationship('Amenity', secondary=place_amenity_association, back_populates='places', lazy=True)
 
-        # Validate required fields
-        self.validate_title(title)
-
-        # Set properties
+    def __init__(self, title, description, price, latitude, longitude, owner_id=None, owner=None):
+        super().__init__()
         self.title = title
         self.description = description
-        self.price = price  # Will use the setter with validation
+        self.price = price
         self.latitude = latitude
         self.longitude = longitude
 
-    @staticmethod
-    def validate_title(title):
-        """Validate place title"""
-        if not title:
-            raise ValueError("Title cannot be empty")
-        if len(title) > 100:
-            raise ValueError("Title must be 100 characters or less")
+        self.owner_id = owner_id
+        if owner:
+            self.owner = owner
+            self.owner_id = owner.id
 
-    @property
-    def price(self):
-        """Get price"""
-        return self._price
+        self.reviews = []
+        self.amenities = []
 
-    @price.setter
-    def price(self, value):
-        """Set price with validation"""
-        if not isinstance(value, (int, float)):
-            raise ValueError("Price must be a number")
-        if value < 0:
-            raise ValueError("Price cannot be negative")
-        self._price = float(value)
+        self.validate_attributes()
 
-    @property
-    def latitude(self):
-        """Get latitude"""
-        return self._latitude
+    def validate_attributes(self):
+        if not isinstance(self.title, str) or not self.title.strip():
+            raise ValueError("Title must be a non-empty string")
+        if not isinstance(self.description, str):
+            raise ValueError("Description must be a string")
+        if not isinstance(self.price, (int, float)) or self.price < 0:
+            raise ValueError("Price must be a non-negative number")
+        if not isinstance(self.latitude, (int, float)) or not (-90 <= self.latitude <= 90):
+            raise ValueError("Latitude must be a number between -90 and 90")
+        if not isinstance(self.longitude, (int, float)) or not (-180 <= self.longitude <= 180):
+            raise ValueError("Longitude must be a number between -180 et 180")
 
-    @latitude.setter
-    def latitude(self, value):
-        """Set latitude with validation"""
-        if not isinstance(value, (int, float)):
-            raise ValueError("Latitude must be a number")
-        if not -90 <= float(value) <= 90:
-            raise ValueError("Latitude must be between -90 and 90")
-        self._latitude = float(value)
+    def add_review(self, review):
+        self.reviews.append(review)
 
-    @property
-    def longitude(self):
-        """Get longitude"""
-        return self._longitude
+    def add_amenity(self, amenity):
+        self.amenities.append(amenity)
 
-    @longitude.setter
-    def longitude(self, value):
-        """Set longitude with validation"""
-        if not isinstance(value, (int, float)):
-            raise ValueError("Longitude must be a number")
-        if not -180 <= float(value) <= 180:
-            raise ValueError("Longitude must be between -180 and 180")
-        self._longitude = float(value)
-
-    def to_dict(self):
-        """Convert place to dictionary"""
-        place_dict = super().to_dict()
-        place_dict.update({
-            'title': self.title,
-            'description': self.description,
-            'price': self.price,
-            'latitude': self.latitude,
-            'longitude': self.longitude
-        })
-        return place_dict
+    def __repr__(self):
+        return f"<Place id={self.id} title={self.title}>"

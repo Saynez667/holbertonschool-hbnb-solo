@@ -1,163 +1,8 @@
-/* General Styles */
-body {
-    font-family: Arial, sans-serif;
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0; /* Light Grey Background */
-    color: #000000;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Ensure footer stays at the bottom */
-}
-
-header {
-    background-color: #FFA500; /* Orange */
-    color: white;
-    padding: 20px;
-}
-
-main {
-    padding: 20px;
-}
-
-footer {
-    background-color: #FFA500; /* Orange */
-    color: white;
-    text-align: center;
-    padding: 10px;
-    margin-top: auto; /* Pousse le pied de page en bas */
-    flex-shrink: 0;
-    bottom: 0;
-    left: 0;
-    width: auto;
-
-}
-
-
-/* Logo */
-.logo {
-    height: 50px; /* Adjust as needed */
-    margin-right: 10px; /* Space between logo and text */
-}
-
-/* Navigation */
-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Space between logo and links */
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 10px;
-}
-
-nav div {
-    display: flex;
-    gap: 10px; /* Space between Home and Login links */
-    justify-content: flex-end; /* Align links to the right */
-}
-
-
-/* Index Page Styles */
-#filter {
-    margin-bottom: 20px;
-    text-align: center;
-}
-#filter h2{
-    margin-bottom: 20px;
-}
-
-#places-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center; /* Center place cards horizontally */
-    text-align: center;
-}
-#places-list p {
-    margin-bottom: 30px;
-}
-.place-card {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 300px; /* Adjust as needed */
-    text-align: center;
-    margin: 20px; /* Add margin around the card */
-    min-width: 200px; /* Minimum width for smaller screens */
-}
-
-.details-button {
-    background-color: #FFA500; /* Orange */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none; /* Remove underline from link */
-}
-/* Place Details Styles */
-.place-details {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-.place-info p {
-    margin: 10px 0;
-}
-
-.place-info {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    text-align: center;
-}
-
-
-
-/* Reviews Styles */
-#reviews {
-    margin-top: 20px;
-}
-
-.review-card {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-    width: auto;
-}
-
-/* Add Review Styles */
-.add-review {
-    margin-top: 20px;
-    width: auto;
-}
-
-.add-review textarea {
-    width: 99%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-}
-
-.add-review button {
-    background-color: #FFA500; /* Orange */
-    color: white;
-    border: none;
-    width: 100%;
-    border-radius: 10px;
-    cursor: pointer;
-    padding: 15px;
-    margin: 10px 0;
+    font-family: Arial, sans-serif;
 }
 
 html {
@@ -165,11 +10,302 @@ html {
     position: relative;
 }
 
-/* Full Width Styles */
-.full-width {
-    width: 100%;
-    padding: 10px; /* Add padding for better appearance */
-    margin-top: 10px; /* Add spacing above */
-    box-sizing: border-box; /* Include padding and border in the element's total width */
+body {
+    background-color: #f4f4f4;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
+header {
+    background-color: #006eff;
+    color: #fff;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    height: 50px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 1rem;
+    font-weight: bold;
+}
+
+.login-button {
+    padding: 8px 15px;
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+main {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    flex: 1 0 auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.places-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.place-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    flex: 0 1 300px;
+    text-align: center;
+}
+
+.place-card h2 {
+    margin-bottom: 10px;
+}
+
+.price {
+    color: #333;
+    font-weight: 500;
+    margin: 10px 0;
+}
+
+.details-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #006eff;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.details-button:hover {
+    background-color: #006eff;
+}
+
+.place-details {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.place-details p {
+    margin-bottom: 10px;
+}
+
+.place-details strong {
+    font-weight: bold;
+}
+
+.review-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 20px 0;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.add-review {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.submit-btn {
+    padding: 12px;
+    background-color: #006eff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #006eff;
+}
+
+.cancel-btn {
+    background-color: #ccc;
+    color: #333;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.cancel-btn:hover {
+    background-color: #bbb;
+}
+
+.login-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.login-btn {
+    margin-top: 1rem;
+    width: 100%;
+    padding: 12px;
+    background-color: #006eff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.login-btn:hover {
+    background-color: #006eff;
+}
+
+footer {
+    background-color: #006eff;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    width: 100%;
+    margin-top: auto;
+    flex-shrink: 0;
+}
+
+.error-message {
+    color: #ff3860;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .places-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+}
+
+button,
+a,
+input,
+select,
+textarea {
+    transition: all 0.3s ease;
+}
+
+.place-card:hover,
+.review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+button:active,
+.details-button:active,
+.login-btn:active,
+.submit-btn:active {
+    transform: scale(0.98);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #006eff;
+    box-shadow: 0 0 0 2px rgba(255, 152, 0, 0.3);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+main > section,
+.place-card,
+.review-card,
+.login-container,
+.add-review {
+    animation: fadeIn 0.6s ease forwards;
+}

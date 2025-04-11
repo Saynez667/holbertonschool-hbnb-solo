@@ -1,72 +1,61 @@
-from app.extensions import db, bcrypt
+from app import db, bcrypt
 from .base_model import BaseModel
 import re
+from sqlalchemy import Column, Integer, String, Boolean
+from sqlalchemy.orm import validates, relationship
 
-class User(BaseModel):
-    """Represents a user in the system with SQLAlchemy integration."""
+class User(BaseModel, db.Model):
     __tablename__ = 'users'
 
-    first_name = db.Column(db.String(50), nullable=False)
-    last_name = db.Column(db.String(50), nullable=False)
-    email = db.Column(db.String(120), nullable=False, unique=True)
-    password = db.Column(db.String(128), nullable=False)
-    is_admin = db.Column(db.Boolean, default=False)
+    id = Column(Integer, primary_key=True)
+    first_name = Column(String(50), nullable=False)
+    last_name = Column(String(50), nullable=False)
+    email = Column(String(120), unique=True, nullable=False)
+    password = Column(String(128), nullable=False)
+    is_admin = Column(Boolean, default=False)
 
-    def __init__(self, first_name, last_name, email, password, is_admin=False, **kwargs):
-        super().__init__(**kwargs)
+    places = relationship('Place', back_populates='owner', cascade='all, delete-orphan')
+    reviews = relationship("Review", back_populates="user", lazy=True)
 
-        self.validate_first_name(first_name)
-        self.validate_last_name(last_name)
-        self.validate_email(email)
-        self.validate_password(password)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if 'password' in kwargs:
+            self.hash_password(kwargs['password'])
+        self.validate()
 
-        self.first_name = first_name
-        self.last_name = last_name
-        self.email = email.lower()
-        self.is_admin = is_admin
-        self.hash_password(password)
+    @validates('email')
+    def validate_email(self, key, email):
+        if not re.match(r'^[\w\.-]+@[\w-]+\.[\w]{2,3}$', email):
+            raise ValueError("Email invalide")
+        return email
 
     def hash_password(self, password):
-        """Hashes the password using bcrypt."""
+        if not password.strip():
+            raise ValueError("Mot de passe vide")
         self.password = bcrypt.generate_password_hash(password).decode('utf-8')
 
     def verify_password(self, password):
-        """Verify password hash."""
+        if not self.password:
+            return False
         return bcrypt.check_password_hash(self.password, password)
 
-    def to_dict(self):
-        user_dict = super().to_dict()
-        user_dict.update({
-            'first_name': self.first_name,
-            'last_name': self.last_name,
-            'email': self.email,
-            'is_admin': self.is_admin
-        })
-        return user_dict
-
-    @staticmethod
-    def validate_first_name(first_name):
-        if not first_name or first_name.strip() == "":
-            raise ValueError("First name cannot be empty")
-        if len(first_name) > 50:
-            raise ValueError("First name must be 50 characters or less")
-
-    @staticmethod
-    def validate_last_name(last_name):
-        if not last_name or last_name.strip() == "":
-            raise ValueError("Last name cannot be empty")
-        if len(last_name) > 50:
-            raise ValueError("Last name must be 50 characters or less")
-
-    @staticmethod
-    def validate_email(email):
-        if not email or email.strip() == "":
-            raise ValueError("Email cannot be empty")
-        email_pattern = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
-        if not re.match(email_pattern, email):
+    def validate(self):
+        if not self.first_name or len(self.first_name) > 50:
+            raise ValueError("First name must be between 1 and 50 characters")
+        if not self.last_name or len(self.last_name) > 50:
+            raise ValueError("Last name must be between 1 and 50 characters")
+        if not self.is_valid_email(self.email):
             raise ValueError("Invalid email format")
 
     @staticmethod
-    def validate_password(password):
-        if not password or password.strip() == "":
-            raise ValueError("Password cannot be empty")
+    def is_valid_email(email):
+        email_regex = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+        return re.match(email_regex, email) is not None
+
+    def __repr__(self):
+        return f"<User {self.email}>"
+
+# ✅ Correction : Import différé pour éviter l'importation circulaire
+def get_user_repository():
+    from app.persistence.user_repository import UserRepository
+    return UserRepository()

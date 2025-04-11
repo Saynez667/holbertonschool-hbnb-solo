@@ -1,12 +1,10 @@
-from app import db
+# app/models/__init__.py
+
+from app import db  # ✅ Correction de l'import
+
+# Import des modèles dans le bon ordre pour éviter les erreurs circulaires
+from .base_model import BaseModel
 from .user import User
 from .place import Place
 from .review import Review
-from .amenity import Amenity
-from .base_model import BaseModel
-
-def init_app(app):
-    """Initialize the database with the application context."""
-    db.init_app(app)
-    with app.app_context():
-        db.create_all()
+from .amenity import Amenity  # ✅ Ajout si l'amenity est aussi un modèle
