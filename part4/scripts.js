@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Function to retrieve a specific cookie value by name
 function getCookie(name) {
     const cookieValue = document.cookie
         .split('; ')
@@ -44,6 +45,7 @@ function getCookie(name) {
     return cookieValue ? cookieValue.split('=')[1] : null;
 }
 
+// Function to check if the user is authenticated and update the UI accordingly
 function checkAuthentication() {
     const token = getCookie('token');
     const loginLink = document.getElementById('login-link');
@@ -59,6 +61,7 @@ function checkAuthentication() {
     fetchPlaces(token);
 }
 
+// Function to fetch places from the API using the provided token
 async function fetchPlaces(token) {
     const apiUrl = 'http://127.0.0.1:5000/api/v1/places';
     
@@ -89,6 +92,7 @@ async function fetchPlaces(token) {
     }
 }
 
+// Function to display the list of places on the page
 function displayPlaces(places) {
     const placesList = document.getElementById('places-list');
     
@@ -123,6 +127,7 @@ function displayPlaces(places) {
     });
 }
 
+// Function to handle price filtering based on user input
 function handlePriceFilter(event) {
     const maxPrice = typeof event === 'object' && event.target ? event.target.value : event;
     console.log('Filtrage par prix activé. Prix maximum sélectionné:', maxPrice);
@@ -169,6 +174,7 @@ function handlePriceFilter(event) {
     console.log(`Résultat du filtrage: ${visibleCount} annonces visibles, ${hiddenCount} annonces masquées`);
 }
 
+// Function to log in the user by sending credentials to the API
 async function loginUser(email, password) {
     const apiUrl = 'http://127.0.0.1:5000/api/v1/auth/login';
     
@@ -241,6 +247,7 @@ async function loginUser(email, password) {
     }
 }
 
+// Function to apply a price filter to the list of places
 function applyPriceFilter(maxPrice) {
     console.log('Applying price filter with max price:', maxPrice);
     const places = document.querySelectorAll('.place');
@@ -272,6 +279,7 @@ function applyPriceFilter(maxPrice) {
     console.log(`Filter result: ${visibleCount} visible, ${hiddenCount} hidden`);
 }
 
+// Function to filter places by price and update their visibility
 function filterPlacesByPrice(maxPrice) {
     console.log('Filtering places with max price:', maxPrice);
     const places = document.querySelectorAll('.place');
